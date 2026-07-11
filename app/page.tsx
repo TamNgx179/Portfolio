@@ -7,11 +7,15 @@ import {
   ExternalLink,
   Film,
   FileText,
+  GalleryHorizontal,
   Info,
   Music,
   SlidersHorizontal,
-  Trophy
+  Smartphone,
+  Trophy,
+  X
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { EducationBook } from "./components/EducationBook";
 import { SkillsExplorer } from "./components/SkillsExplorer";
 
@@ -111,18 +115,126 @@ const contributionWeeks = Array.from({ length: 53 }, (_, week) =>
 );
 
 const contributionColors = [
-  "bg-[#20283c]",
+  "bg-[#050507]",
   "bg-[#27425a]",
   "bg-[#32617c]",
   "bg-[#4383a6]",
   "bg-[#5aa9c9]"
 ];
 
-const featuredProjects = [
+type ProjectTech = {
+  label: string;
+  src?: string;
+  icon?: LucideIcon;
+  bg?: string;
+};
+
+type ProjectMedia = {
+  label: string;
+  src?: string;
+  alt?: string;
+  orientation?: "wide" | "phone";
+  width?: number;
+  height?: number;
+};
+
+type ProjectLink = {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+  imageSrc?: string;
+};
+
+type FeaturedProject = {
+  title: string;
+  description: string;
+  detail: {
+    eyebrow: string;
+    overview: string;
+    highlights: string[];
+    stack: ProjectTech[];
+    media: ProjectMedia[];
+  };
+  links: ProjectLink[];
+};
+
+const tech: Record<string, ProjectTech> = {
+  css: { label: "CSS", src: "/images/skills/css.png", bg: "#d9edff" },
+  docker: { label: "Docker", src: "/images/skills/docker.png", bg: "#d6f7ff" },
+  express: { label: "Express.js", src: "/images/skills/express.png", bg: "#f7f0df" },
+  grafana: { label: "Grafana", src: "/images/skills/grafana.png", bg: "#ffe0ba" },
+  hardhat: { label: "Hardhat", src: "/images/skills/hardhat.png", bg: "#fff3b2" },
+  javascript: { label: "JavaScript", src: "/images/skills/javascript.png", bg: "#fff176" },
+  mongodb: { label: "MongoDB", src: "/images/skills/mongodb.png", bg: "#e1ffd5" },
+  nextjs: { label: "Next.js", src: "/images/skills/nextjs.png", bg: "#ffffff" },
+  nodejs: { label: "Node.js", src: "/images/skills/nodejs.png", bg: "#dff8da" },
+  postgresql: { label: "PostgreSQL", src: "/images/skills/postgresql.png", bg: "#d7efff" },
+  prometheus: { label: "Prometheus", src: "/images/skills/prometheus.png", bg: "#ffd5c2" },
+  qdrant: { label: "Qdrant", src: "/images/skills/qdrant.png", bg: "#ffe4eb" },
+  react: { label: "React", src: "/images/skills/react.png", bg: "#173f66" },
+  redis: { label: "Redis", src: "/images/skills/redis.png", bg: "#ffd6d2" },
+  solidity: { label: "Solidity", src: "/images/skills/solidity.png", bg: "#e8e7ff" },
+  spring: { label: "Spring Boot", src: "/images/skills/spring.png", bg: "#e8ffd6" },
+  tailwind: { label: "Tailwind CSS", src: "/images/skills/tailwind.png", bg: "#ddf7ff" },
+  typescript: { label: "TypeScript", src: "/images/skills/typescript.png", bg: "#d7eaff" },
+  vite: { label: "Vite", src: "/images/skills/vite.png", bg: "#eee1ff" },
+  web3: { label: "Ethers.js", src: "/images/skills/ethers.png", bg: "#dcf5ff" },
+  mobile: { label: "Mobile App", icon: Smartphone, bg: "#e2fbff" }
+};
+
+const featuredProjects: FeaturedProject[] = [
   {
     title: "blockchain-vehicle-marketplace",
     description:
       "A simulated vehicle marketplace that combines React, Express, MongoDB, and Ethereum Sepolia escrow to make vehicle transactions more transparent and trustworthy.",
+    detail: {
+      eyebrow: "Full-stack Web3 Platform",
+      overview:
+        "A blockchain-integrated e-commerce platform for vehicle trading, combining a React/Vite marketplace, Express APIs, MongoDB data models, and Sepolia escrow smart contracts.",
+      highlights: [
+        "Marketplace flow for browsing vehicles, filtering by model and price, reviewing car details, adding favorite models, and preparing an order from a customer-facing UI.",
+        "Secure checkout journey with vehicle selection, handover planning, escrow deposit, and confirmation steps so buyers can follow the whole reservation process clearly.",
+        "Sepolia escrow integration that tracks deposit, full payment, seller confirmation, completion, and cancellation states between the backend, database, and smart contract."
+      ],
+      stack: [
+        tech.react,
+        tech.vite,
+        tech.css,
+        tech.javascript,
+        tech.nodejs,
+        tech.express,
+        tech.solidity,
+        tech.web3,
+        tech.hardhat,
+        tech.mongodb
+      ],
+      media: [
+        {
+          label: "Vehicle discovery",
+          src: "/images/projects/vehicle-marketplace-listing.png",
+          alt: "Vehicle marketplace listing and filter page",
+          orientation: "wide",
+          width: 2217,
+          height: 1183
+        },
+        {
+          label: "Secure checkout flow",
+          src: "/images/projects/vehicle-checkout.png",
+          alt: "Vehicle checkout and escrow reservation flow",
+          orientation: "wide",
+          width: 2245,
+          height: 1177
+        },
+        {
+          label: "Verified Sepolia escrow contract",
+          src: "/images/projects/vehicle-escrow-contract.png",
+          alt: "Etherscan verified VehicleMarketplaceEscrow contract",
+          orientation: "wide",
+          width: 2274,
+          height: 1054
+        }
+      ]
+    },
     links: [
       {
         label: "GitHub",
@@ -135,6 +247,55 @@ const featuredProjects = [
     title: "deepreader",
     description:
       "An AI-powered deep reading platform where users can upload books, chat with content through RAG, generate summaries, and study with flashcards.",
+    detail: {
+      eyebrow: "AI Reading Workspace",
+      overview:
+        "DeepReader turns long-form PDF and EPUB documents into an interactive study workspace with grounded Q&A, summaries, flashcards, and a RAG-powered learning flow.",
+      highlights: [
+        "Document reader with page navigation, table of contents, reading progress, focus controls, and page completion actions for long-form study materials.",
+        "AI study workspace that can generate summaries, flashcards, and chat responses from uploaded documents so learners can switch between reading and review.",
+        "RAG-based Q&A flow that grounds answers in uploaded PDF/EPUB content, helping users ask questions while staying connected to the original material.",
+        "Learning history and saved-study panel for keeping generated summaries, review sessions, and chat flows organized inside one workspace."
+      ],
+      stack: [
+        tech.spring,
+        tech.nextjs,
+        tech.tailwind,
+        tech.postgresql,
+        tech.mongodb,
+        tech.redis,
+        tech.qdrant,
+        tech.docker,
+        tech.prometheus,
+        tech.grafana
+      ],
+      media: [
+        {
+          label: "Document reader",
+          src: "/images/projects/deepreader-reader.png",
+          alt: "DeepReader document reader and table of contents screen",
+          orientation: "wide",
+          width: 1603,
+          height: 1173
+        },
+        {
+          label: "AI summary and flashcards",
+          src: "/images/projects/deepreader-summary.png",
+          alt: "DeepReader summary flashcards and chat workspace",
+          orientation: "wide",
+          width: 1398,
+          height: 1131
+        },
+        {
+          label: "Document companion chat",
+          src: "/images/projects/deepreader-chat.png",
+          alt: "DeepReader document companion chat screen",
+          orientation: "wide",
+          width: 1423,
+          height: 1120
+        }
+      ]
+    },
     links: [
       {
         label: "GitHub",
@@ -147,16 +308,53 @@ const featuredProjects = [
     title: "Social Welfare Application",
     description:
       "A mobile application for digital social welfare services in Ho Chi Minh City, supporting citizens through Android and iOS app distribution.",
+    detail: {
+      eyebrow: "Public-service Mobile Application",
+      overview:
+        "A citizen-facing social welfare mobile application for Ho Chi Minh City, focused on account flows, news/events, donation activities, activity search, and reliable backend service delivery.",
+      highlights: [
+        "Citizen-facing home screen that introduces public social welfare services and guides users into donation activities, support registration, news, events, and account areas.",
+        "Support registration flow with personal information, birth date, gender, ethnicity, identity number, issue date, and address fields for submitting social welfare requests.",
+        "Notification center that keeps citizens updated on submission status, received applications, review progress, and successful registration events."
+      ],
+      stack: [tech.mobile, tech.nodejs, tech.express, tech.typescript, tech.postgresql],
+      media: [
+        {
+          label: "Citizen dashboard",
+          src: "/images/projects/asxh-home.jpg",
+          alt: "ASXH mobile home screen",
+          orientation: "phone",
+          width: 1080,
+          height: 2129
+        },
+        {
+          label: "Support registration form",
+          src: "/images/projects/asxh-registration.jpg",
+          alt: "ASXH support registration screen",
+          orientation: "phone",
+          width: 1080,
+          height: 2129
+        },
+        {
+          label: "Application notifications",
+          src: "/images/projects/asxh-notifications.jpg",
+          alt: "ASXH notification status screen",
+          orientation: "phone",
+          width: 1080,
+          height: 2129
+        }
+      ]
+    },
     links: [
       {
-        label: "Android",
+        label: "Google Play",
         href: "https://play.google.com/store/apps/details?id=vn.mttqhcm.asxh",
-        icon: ExternalLink
+        imageSrc: "/images/google-play.png"
       },
       {
-        label: "iOS",
+        label: "App Store",
         href: "https://apps.apple.com/vn/app/an-sinh-x%C3%A3-h%E1%BB%99i-s%E1%BB%91-tp-hcm/id6761987939?l=vi",
-        icon: ExternalLink
+        imageSrc: "/images/app-store.webp"
       }
     ]
   }
@@ -190,6 +388,9 @@ const doodle =
 
 export default function Home() {
   const [isAwardPreviewOpen, setIsAwardPreviewOpen] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [selectedProjectImage, setSelectedProjectImage] = useState<ProjectMedia | null>(null);
+  const activeProject = featuredProjects.find((project) => project.title === expandedProject);
 
   return (
     <main className="relative isolate overflow-hidden bg-[#10008a] bg-[url('/images/main-space-background.png')] bg-[length:100%_auto] bg-top bg-repeat-y text-white">
@@ -209,12 +410,12 @@ export default function Home() {
       </div>
       <header
         className={cx(
-          "pointer-events-none fixed left-0 top-0 z-30 flex min-h-[58px] w-full items-center justify-center px-[clamp(14px,4vw,40px)] py-2 transition-[opacity,visibility] duration-200 max-[860px]:justify-start max-[860px]:overflow-x-auto max-[860px]:px-3 max-[860px]:py-3",
+          "pointer-events-none fixed left-0 top-0 z-30 flex min-h-[58px] w-full items-center justify-center px-[clamp(14px,4vw,40px)] py-2 transition-[opacity,visibility] duration-200 max-[860px]:px-3 max-[860px]:py-3",
           isAwardPreviewOpen && "invisible opacity-0"
         )}
         aria-label="Primary navigation"
       >
-        <div className="pointer-events-auto relative flex w-fit max-w-full items-center justify-center gap-3 rounded-full bg-[linear-gradient(135deg,rgba(9,13,28,0.94),rgba(17,12,36,0.94))] py-[5px] pl-2 pr-4 shadow-[0_18px_50px_rgba(0,0,0,0.42)] max-[860px]:justify-start">
+        <div className="pointer-events-auto relative flex w-fit max-w-full items-center justify-center gap-3 rounded-full bg-[linear-gradient(135deg,rgba(9,13,28,0.94),rgba(17,12,36,0.94))] py-[5px] pl-2 pr-4 shadow-[0_18px_50px_rgba(0,0,0,0.42)] max-[860px]:w-full max-[860px]:justify-start max-[520px]:gap-1.5 max-[520px]:pr-2">
           <a
             className="group relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-full border border-cyan-100/55 bg-[#080914] shadow-[0_0_0_4px_rgba(120,221,255,0.08),0_0_28px_rgba(120,221,255,0.42)] transition duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_0_0_5px_rgba(120,221,255,0.1),0_0_38px_rgba(120,221,255,0.58)] max-[520px]:size-[38px]"
             href="#home"
@@ -230,10 +431,10 @@ export default function Home() {
             />
           </a>
 
-          <nav className="flex min-w-0 items-center justify-center gap-1.5 overflow-x-auto text-[clamp(.8rem,1.15vw,1rem)] font-black uppercase [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-[520px]:text-[.72rem]">
+          <nav className="flex min-w-0 items-center justify-center gap-1.5 overflow-x-auto text-[clamp(.8rem,1.15vw,1rem)] font-black uppercase [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-[860px]:flex-1 max-[860px]:justify-start max-[520px]:gap-0.5 max-[520px]:text-[.68rem]">
             {navItems.map((item) => (
               <a
-                className="inline-flex min-h-8 items-center justify-center whitespace-nowrap rounded-full border border-transparent px-[clamp(10px,1.45vw,20px)] text-white/75 transition duration-200 hover:-translate-y-0.5 hover:text-white max-[520px]:min-h-8 max-[520px]:px-3"
+                className="inline-flex min-h-8 items-center justify-center whitespace-nowrap rounded-full border border-transparent px-[clamp(10px,1.45vw,20px)] text-white/75 transition duration-200 hover:-translate-y-0.5 hover:text-white max-[520px]:min-h-8 max-[520px]:px-2.5"
                 key={item.href}
                 href={item.href}
               >
@@ -243,7 +444,7 @@ export default function Home() {
           </nav>
 
           <span
-            className="pointer-events-none absolute -bottom-5 -right-5 size-[52px] origin-[50%_18%] rotate-[10deg] animate-[astronautFloat_4.8s_ease-in-out_infinite] drop-shadow-[0_10px_16px_rgba(0,0,0,0.36)] max-[520px]:-bottom-4 max-[520px]:-right-3 max-[520px]:size-11"
+            className="pointer-events-none absolute -bottom-5 -right-5 size-[52px] origin-[50%_18%] rotate-[10deg] animate-[astronautFloat_4.8s_ease-in-out_infinite] drop-shadow-[0_10px_16px_rgba(0,0,0,0.36)] max-[520px]:hidden"
             aria-hidden="true"
           >
             <Image
@@ -264,7 +465,7 @@ export default function Home() {
             <h1
               className={cx(
                 displayFont,
-                "m-0 max-w-[760px] text-balance text-[clamp(3.15rem,8vw,7.6rem)] font-bold leading-[.98] text-white [text-shadow:0_10px_34px_rgba(0,0,0,0.55)] max-[520px]:text-[clamp(2.65rem,16vw,4rem)]"
+                "m-0 max-w-[760px] text-balance text-[clamp(3.15rem,8vw,7.6rem)] font-bold leading-[.98] text-white [text-shadow:0_10px_34px_rgba(0,0,0,0.55)] max-[520px]:break-words max-[520px]:text-[clamp(2.45rem,13.5vw,3.35rem)]"
               )}
             >
               Welcome to my portfolio
@@ -489,7 +690,7 @@ export default function Home() {
         id="experience"
         className="relative isolate z-10 overflow-hidden border-t border-[#8ee9ff]/30 bg-transparent px-5 py-[104px] max-[860px]:px-[18px] max-[860px]:py-24 max-[520px]:px-3.5 max-[520px]:py-20"
       >
-        <div className="relative z-[1] mx-auto grid w-[min(1280px,100%)] gap-10">
+        <div className="relative z-[1] mx-auto grid min-w-0 w-[min(1280px,100%)] gap-10">
           <h2
             className={cx(
               displayFont,
@@ -566,7 +767,7 @@ export default function Home() {
         id="project"
         className="relative isolate z-10 overflow-hidden border-t border-[#8ee9ff]/30 bg-[linear-gradient(180deg,#0b0825_0%,#190a46_52%,#06030f_100%)] px-5 py-[104px] max-[860px]:px-[18px] max-[860px]:py-24 max-[520px]:px-3.5 max-[520px]:py-20"
       >
-        <div className="relative z-[1] mx-auto grid w-[min(1280px,100%)] gap-10">
+        <div className="relative z-[1] mx-auto grid min-w-0 w-[min(1280px,100%)] gap-10">
           <h2
             className={cx(
               displayFont,
@@ -576,7 +777,7 @@ export default function Home() {
             Projects
           </h2>
 
-          <article className="rounded-3xl border-2 border-dashed border-[#78ddff]/70 bg-[linear-gradient(145deg,rgba(17,40,58,0.9),rgba(35,24,74,0.88)),rgba(8,13,30,0.92)] p-[clamp(22px,3vw,34px)] shadow-[0_24px_70px_rgba(0,0,0,0.34)]">
+          <article className="min-w-0 max-w-full rounded-3xl border-2 border-dashed border-[#78ddff]/70 bg-[linear-gradient(145deg,rgba(17,40,58,0.9),rgba(35,24,74,0.88)),rgba(8,13,30,0.92)] p-[clamp(22px,3vw,34px)] shadow-[0_24px_70px_rgba(0,0,0,0.34)] max-[520px]:rounded-2xl max-[520px]:px-4">
             <div className="mb-7 flex items-center justify-center gap-3 text-center text-[#8ee9ff]">
               <SlidersHorizontal size={30} strokeWidth={2.5} />
               <h3 className="m-0 text-[clamp(1.45rem,2.8vw,2.4rem)] font-black">
@@ -585,7 +786,7 @@ export default function Home() {
             </div>
             <div className="mb-9 h-px bg-[linear-gradient(90deg,transparent,#78ddff,transparent)]" />
 
-            <div className="overflow-x-auto pb-2">
+            <div className="max-w-full overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:thin]">
               <div className="mx-auto grid w-[min-content] gap-3">
                 <div
                   className="grid gap-[6px] text-sm font-black text-[#b8f4ff]"
@@ -612,7 +813,8 @@ export default function Home() {
                       week.map((level, dayIndex) => (
                         <span
                           className={cx(
-                            "size-[14px] rounded-[4px] border border-[#9ddff0]/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_1px_4px_rgba(0,0,0,0.22)]",
+                            "size-[14px] rounded-[4px] border shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_1px_4px_rgba(0,0,0,0.22)]",
+                            level === 0 ? "border-[#596078]/65" : "border-[#9ddff0]/22",
                             contributionColors[level]
                           )}
                           key={`${weekIndex}-${dayIndex}`}
@@ -629,7 +831,11 @@ export default function Home() {
                     <span>Less</span>
                     {contributionColors.map((color, index) => (
                       <span
-                        className={cx("size-[14px] rounded-[4px] border border-[#9ddff0]/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]", color)}
+                        className={cx(
+                          "size-[14px] rounded-[4px] border shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
+                          index === 0 ? "border-[#596078]/65" : "border-[#9ddff0]/22",
+                          color
+                        )}
                         key={`${color}-${index}`}
                       />
                     ))}
@@ -640,7 +846,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="rounded-3xl border-2 border-dashed border-[#78ddff]/70 bg-[linear-gradient(145deg,rgba(17,40,58,0.9),rgba(35,24,74,0.88)),rgba(8,13,30,0.92)] p-[clamp(22px,3vw,34px)] shadow-[0_24px_70px_rgba(0,0,0,0.34)]">
+          <article className="min-w-0 max-w-full rounded-3xl border-2 border-dashed border-[#78ddff]/70 bg-[linear-gradient(145deg,rgba(17,40,58,0.9),rgba(35,24,74,0.88)),rgba(8,13,30,0.92)] p-[clamp(22px,3vw,34px)] shadow-[0_24px_70px_rgba(0,0,0,0.34)] max-[520px]:rounded-2xl max-[520px]:px-4">
             <div className="mb-7 flex items-center justify-center gap-3 text-center text-[#8ee9ff]">
               <BookOpen size={30} strokeWidth={2.5} />
               <h3 className="m-0 text-[clamp(1.45rem,2.8vw,2.4rem)] font-black">
@@ -652,11 +858,11 @@ export default function Home() {
             <div className="grid grid-cols-3 gap-5 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1">
               {featuredProjects.map((project) => (
                 <article
-                  className="group grid min-h-[278px] grid-rows-[auto_1fr_auto] rounded-2xl border border-cyan-100/18 bg-[linear-gradient(145deg,rgba(255,255,255,0.1),transparent_42%),rgba(9,16,40,0.72)] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:border-[#78ddff]/55 hover:bg-white/[.08]"
+                  className="group grid min-h-[278px] min-w-0 grid-rows-[auto_1fr_auto] rounded-2xl border border-cyan-100/18 bg-[linear-gradient(145deg,rgba(255,255,255,0.1),transparent_42%),rgba(9,16,40,0.72)] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:border-[#78ddff]/55 hover:bg-white/[.08] max-[520px]:min-h-[250px] max-[520px]:p-4"
                   key={project.title}
                 >
-                  <div className="mb-4 flex items-start justify-between gap-4">
-                    <h4 className="m-0 text-xl font-black leading-tight text-white">
+                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+                    <h4 className="m-0 min-w-0 flex-1 break-words text-xl font-black leading-tight text-white max-[520px]:text-lg">
                       {project.title}
                     </h4>
                     <div className="flex shrink-0 items-center gap-2">
@@ -665,21 +871,37 @@ export default function Home() {
 
                         return (
                           <a
-                            className="grid size-9 place-items-center rounded-full border border-cyan-100/20 bg-white/[.07] text-[#8ee9ff] transition hover:-translate-y-0.5 hover:border-[#78ddff]/60 hover:bg-[#78ddff]/15"
+                            className={cx(
+                              "grid cursor-pointer place-items-center border border-cyan-100/20 bg-white/[.07] text-[#8ee9ff] transition hover:-translate-y-0.5 hover:border-[#78ddff]/60 hover:bg-[#78ddff]/15",
+                              link.imageSrc ? "size-10 overflow-hidden rounded-xl p-2" : "size-9 rounded-full"
+                            )}
                             href={link.href}
                             key={link.label}
                             target="_blank"
                             rel="noreferrer"
                             aria-label={`Open ${project.title} ${link.label}`}
                           >
-                            <Icon size={18} strokeWidth={2.4} />
+                            {link.imageSrc ? (
+                              <Image
+                                src={link.imageSrc}
+                                alt=""
+                                width={32}
+                                height={32}
+                                className="max-h-full max-w-full object-contain"
+                              />
+                            ) : Icon ? (
+                              <Icon size={18} strokeWidth={2.4} />
+                            ) : null}
                           </a>
                         );
                       })}
                       <button
-                        className="grid size-9 place-items-center rounded-full border border-cyan-100/20 bg-white/[.07] text-[#ffcf8a] transition hover:-translate-y-0.5 hover:border-[#ffcf8a]/70 hover:bg-[#ffcf8a]/15"
+                        className="grid size-9 cursor-pointer place-items-center rounded-full border border-cyan-100/20 bg-white/[.07] text-[#ffcf8a] transition hover:-translate-y-0.5 hover:border-[#ffcf8a]/70 hover:bg-[#ffcf8a]/15"
                         type="button"
+                        onClick={() => setExpandedProject(project.title)}
                         aria-label={`View ${project.title} details`}
+                        aria-expanded={expandedProject === project.title}
+                        aria-controls="project-detail"
                       >
                         <Info size={18} strokeWidth={2.4} />
                       </button>
@@ -694,9 +916,215 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            {activeProject ? (
+              <section
+                className="relative mt-8 overflow-hidden rounded-2xl border border-[#8ee9ff]/35 bg-[#08091f]/95 p-[clamp(18px,3vw,34px)] shadow-[0_24px_70px_rgba(0,0,0,0.38)]"
+                id="project-detail"
+                aria-live="polite"
+              >
+                <div className="mb-7 flex items-start justify-between gap-5 pr-12 max-[520px]:mb-5">
+                  <div className="min-w-0">
+                    <p className="m-0 text-sm font-black uppercase tracking-[.12em] text-[#8ee9ff] max-[520px]:text-xs">
+                      {activeProject.detail.eyebrow}
+                    </p>
+                    <h4 className="m-0 mt-2 break-words text-[clamp(1.5rem,3vw,2.5rem)] font-black leading-tight text-white">
+                      {activeProject.title}
+                    </h4>
+                  </div>
+                  <button
+                    className="absolute right-4 top-4 grid size-10 cursor-pointer place-items-center rounded-full border border-white/20 bg-white/[.08] text-white transition hover:rotate-90 hover:border-[#8ee9ff]/60 hover:bg-[#8ee9ff]/15"
+                    type="button"
+                    onClick={() => setExpandedProject(null)}
+                    aria-label="Close project details"
+                  >
+                    <X size={20} strokeWidth={2.5} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-[minmax(0,1.08fr)_minmax(300px,.92fr)] items-start gap-7 max-[900px]:grid-cols-1">
+                  <div className="grid gap-3">
+                    {activeProject.detail.media[0].src ? (
+                      <button
+                        className={cx(
+                          "group grid cursor-pointer justify-items-center overflow-hidden rounded-xl border border-dashed border-[#8ee9ff]/45 bg-[#070b25] p-2 transition hover:-translate-y-0.5 hover:border-[#8ee9ff]/80",
+                          activeProject.detail.media[0].orientation === "phone"
+                            ? "mx-auto w-full max-w-[320px]"
+                            : "w-full"
+                        )}
+                        type="button"
+                        onClick={() => setSelectedProjectImage(activeProject.detail.media[0])}
+                        aria-label={`Preview ${activeProject.detail.media[0].label}`}
+                      >
+                        <Image
+                          src={activeProject.detail.media[0].src}
+                          alt={activeProject.detail.media[0].alt ?? activeProject.detail.media[0].label}
+                          width={activeProject.detail.media[0].width ?? 1200}
+                          height={activeProject.detail.media[0].height ?? 800}
+                          sizes="(max-width: 900px) 100vw, 650px"
+                          className="h-auto w-full rounded-lg object-contain transition duration-300 group-hover:scale-[1.02]"
+                        />
+                        <span className="pointer-events-none mt-2 justify-self-start rounded-full bg-[#030614]/80 px-3 py-1 text-sm font-black text-[#e9faff] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
+                          {activeProject.detail.media[0].label}
+                        </span>
+                      </button>
+                    ) : (
+                      <div className="group grid aspect-video place-items-center overflow-hidden rounded-xl border border-dashed border-[#8ee9ff]/45 bg-[linear-gradient(145deg,rgba(49,112,191,.34),rgba(52,18,117,.48))] p-5 text-center">
+                        <div className="grid justify-items-center gap-3">
+                          <GalleryHorizontal className="text-[#8ee9ff]" size={42} strokeWidth={1.8} />
+                          <span className="font-black text-[#e9faff]">
+                            {activeProject.detail.media[0].label}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="grid grid-cols-2 gap-3 max-[520px]:grid-cols-1">
+                      {activeProject.detail.media.slice(1).map((media) => (
+                        media.src ? (
+                          <button
+                            className={cx(
+                              "group grid cursor-pointer justify-items-center overflow-hidden rounded-xl border border-dashed border-[#b89cff]/35 bg-[#080b24] p-2 transition hover:-translate-y-0.5 hover:border-[#b89cff]/70",
+                              media.orientation === "phone" ? "mx-auto w-full max-w-[260px]" : "w-full"
+                            )}
+                            key={media.label}
+                            type="button"
+                            onClick={() => setSelectedProjectImage(media)}
+                            aria-label={`Preview ${media.label}`}
+                          >
+                            <Image
+                              src={media.src}
+                              alt={media.alt ?? media.label}
+                              width={media.width ?? 900}
+                              height={media.height ?? 700}
+                              sizes="(max-width: 520px) 100vw, 320px"
+                              className="h-auto w-full rounded-lg object-contain transition duration-300 group-hover:scale-[1.03]"
+                            />
+                            <span className="pointer-events-none mt-2 justify-self-start rounded-full bg-[#030614]/80 px-2.5 py-1 text-xs font-black text-[#eee9ff]">
+                              {media.label}
+                            </span>
+                          </button>
+                        ) : (
+                          <div
+                            className="grid aspect-[16/10] place-items-center rounded-xl border border-dashed border-[#b89cff]/35 bg-[#171047]/78 p-4 text-center"
+                            key={media.label}
+                          >
+                            <div className="grid justify-items-center gap-2">
+                              <GalleryHorizontal className="text-[#c8b8ff]" size={28} strokeWidth={1.8} />
+                              <span className="text-sm font-black text-[#eee9ff]">{media.label}</span>
+                            </div>
+                          </div>
+                        )
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid gap-6">
+                    <div>
+                      <h5 className="m-0 text-xl font-black text-[#8ee9ff]">Overview</h5>
+                      <p className="m-0 mt-3 font-bold leading-[1.7] text-[#d6e6ff]">
+                        {activeProject.detail.overview}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h5 className="m-0 text-xl font-black text-[#ffcf8a]">Key highlights</h5>
+                      <ul className="m-0 mt-3 grid list-disc gap-3 pl-5 marker:text-[#8ee9ff]">
+                        {activeProject.detail.highlights.map((highlight) => (
+                          <li className="pl-1 font-bold leading-[1.55] text-[#e5e9ff]" key={highlight}>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h5 className="m-0 text-xl font-black text-[#8ee9ff]">Tech stack</h5>
+                      <div className="mt-3 flex flex-wrap gap-2.5">
+                        {activeProject.detail.stack.map((technology) => {
+                          const Icon = technology.icon;
+
+                          return (
+                            <span
+                              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#8ee9ff]/25 bg-[#11193c]/86 px-3 py-1.5 text-sm font-black text-[#dff8ff] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                              key={technology.label}
+                              data-tech-label={technology.label}
+                            >
+                              <span
+                                className="grid size-8 shrink-0 place-items-center rounded-full border border-white/20 p-1"
+                                style={{ backgroundColor: technology.bg ?? "#e8f6ff" }}
+                              >
+                                {technology.src ? (
+                                  <Image
+                                    src={technology.src}
+                                    alt=""
+                                    width={28}
+                                    height={28}
+                                    className="h-full w-full object-contain"
+                                  />
+                                ) : Icon ? (
+                                  <Icon aria-hidden="true" className="text-[#15223e]" size={20} strokeWidth={2.5} />
+                                ) : null}
+                              </span>
+                              {technology.label}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : null}
           </article>
         </div>
       </section>
+
+      {selectedProjectImage?.src ? (
+        <div
+          className="fixed inset-0 z-[9999] grid place-items-center bg-[#02030de8] p-5 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedProjectImage.label} preview`}
+          onClick={() => setSelectedProjectImage(null)}
+        >
+          <div
+            className="grid max-h-[92vh] w-[min(1180px,100%)] gap-3 rounded-2xl border border-[#8ee9ff]/30 bg-[#070a20]/95 p-4 shadow-[0_34px_100px_rgba(0,0,0,0.58)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-4">
+              <p className="m-0 min-w-0 break-words text-sm font-black uppercase tracking-[.12em] text-[#b8f4ff]">
+                {selectedProjectImage.label}
+              </p>
+              <button
+                className="grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border border-white/20 bg-[#111733] text-white shadow-[0_12px_28px_rgba(0,0,0,0.35)] transition hover:rotate-90 hover:border-[#8ee9ff]/70"
+                type="button"
+                onClick={() => setSelectedProjectImage(null)}
+                aria-label="Close project image preview"
+              >
+                <X size={22} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            <div
+              className={cx(
+                "grid max-h-[78vh] w-full place-items-center overflow-auto rounded-xl bg-[#03050f] p-2",
+                selectedProjectImage.orientation === "phone"
+                  ? "mx-auto max-w-[520px]"
+                  : "max-w-full"
+              )}
+            >
+              <Image
+                src={selectedProjectImage.src}
+                alt={selectedProjectImage.alt ?? selectedProjectImage.label}
+                width={selectedProjectImage.width ?? 1400}
+                height={selectedProjectImage.height ?? 900}
+                sizes="100vw"
+                className="h-auto max-h-[76vh] w-auto max-w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }

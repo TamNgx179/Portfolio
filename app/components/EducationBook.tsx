@@ -158,7 +158,7 @@ export function EducationBook({ onPreviewChange }: EducationBookProps) {
   return (
     <>
       <div className="relative w-full">
-        <div className="relative mx-auto w-[min(1240px,100%)] drop-shadow-[0_34px_38px_rgba(0,0,0,0.34)] max-[860px]:w-[min(1040px,100%)] max-[520px]:w-[min(760px,100%)] max-[520px]:overflow-x-auto max-[520px]:pb-1">
+        <div className="relative mx-auto w-[min(1240px,100%)] drop-shadow-[0_34px_38px_rgba(0,0,0,0.34)] max-[860px]:w-[min(1040px,100%)] max-[520px]:hidden">
           {bookDoodles.map((doodle) => (
             <Image
               key={doodle.src}
@@ -175,38 +175,38 @@ export function EducationBook({ onPreviewChange }: EducationBookProps) {
             alt="Open book illustration"
             width={1614}
             height={975}
+            loading="eager"
             className="block h-auto w-full object-contain max-[520px]:min-w-[720px]"
-            priority={false}
           />
 
           <div className="pointer-events-none absolute inset-x-[7%] bottom-[14%] top-[5%] grid grid-cols-2 gap-[5.7%] max-[520px]:min-w-[620px]">
-            <article className="pointer-events-auto flex min-w-0 flex-col justify-center self-stretch px-[clamp(12px,2.1vw,28px)] py-[clamp(10px,1.4vw,22px)] text-center max-[860px]:px-4 max-[860px]:py-2 max-[520px]:px-2.5 max-[520px]:py-1">
+            <article className="pointer-events-auto flex min-w-0 flex-col justify-center self-stretch px-[clamp(12px,2.1vw,28px)] py-[clamp(10px,1.4vw,22px)] text-center max-[860px]:px-3 max-[860px]:py-0 max-[520px]:px-2.5 max-[520px]:py-1">
               <Image
                 src="/images/uit-logo.png"
                 alt="VNUHCM University of Information Technology logo"
                 width={1185}
                 height={935}
-                className="mx-auto mb-3 h-auto w-[clamp(96px,8.5vw,145px)] object-contain drop-shadow-[0_6px_12px_rgba(0,81,214,0.28)] max-[520px]:mb-1.5 max-[520px]:w-12"
+                className="mx-auto mb-3 h-auto w-[clamp(96px,8.5vw,145px)] object-contain drop-shadow-[0_6px_12px_rgba(0,81,214,0.28)] max-[860px]:mb-1 max-[860px]:w-20 max-[520px]:mb-1.5 max-[520px]:w-12"
               />
-              <p className="mx-0 mb-3 mt-0 text-center text-[clamp(.8rem,.95vw,.9rem)] font-black uppercase text-[#0c5c5b] max-[520px]:text-[.58rem]">
+              <p className="mx-0 mb-3 mt-0 text-center text-[clamp(.8rem,.95vw,.9rem)] font-black uppercase text-[#0c5c5b] max-[860px]:mb-1 max-[860px]:text-[.66rem] max-[520px]:text-[.58rem]">
                 VNUHCM - University of Information Technology
               </p>
               <h3
                 className={cx(
                   displayFont,
-                  "m-0 text-center text-[clamp(1.45rem,2.25vw,2.35rem)] leading-[1.08] text-[#112852] max-[520px]:text-[1.08rem]"
+                  "m-0 text-center text-[clamp(1.45rem,2.25vw,2.35rem)] leading-[1.08] text-[#112852] max-[860px]:text-[1.35rem] max-[520px]:text-[1.08rem]"
                 )}
               >
                 Information Technology
               </h3>
-              <p className="mx-0 mb-[22px] mt-3 text-center font-extrabold text-[#486073] max-[520px]:text-[.58rem]">
+              <p className="mx-0 mb-[22px] mt-3 text-center font-extrabold text-[#486073] max-[860px]:mb-2 max-[860px]:mt-1.5 max-[860px]:text-xs max-[520px]:text-[.58rem]">
                 (Sep 2023 - Jun 2027 expected)
               </p>
 
-              <ul className="m-0 grid list-none gap-2.5 p-0 text-left max-[520px]:gap-1">
+              <ul className="m-0 grid list-none gap-2.5 p-0 text-left max-[860px]:gap-1 max-[520px]:gap-1">
                 {educationFacts.map((fact, index) => (
                   <li
-                    className="relative pl-[22px] text-[clamp(.82rem,1.2vw,.98rem)] font-bold leading-[1.48] text-[#344d5d] before:absolute before:left-0 before:top-[.75em] before:size-2 before:rounded-full before:bg-[#0c9fa2] before:content-[''] max-[860px]:text-[.78rem] max-[860px]:leading-[1.34] max-[520px]:pl-3.5 max-[520px]:text-[.58rem] max-[520px]:leading-[1.22] max-[520px]:before:size-[5px]"
+                    className="relative pl-[22px] text-[clamp(.82rem,1.2vw,.98rem)] font-bold leading-[1.48] text-[#344d5d] before:absolute before:left-0 before:top-[.75em] before:size-2 before:rounded-full before:bg-[#0c9fa2] before:content-[''] max-[860px]:pl-4 max-[860px]:text-[.66rem] max-[860px]:leading-[1.2] max-[860px]:before:size-1.5 max-[520px]:pl-3.5 max-[520px]:text-[.58rem] max-[520px]:leading-[1.22] max-[520px]:before:size-[5px]"
                     key={index}
                   >
                     {fact}
@@ -234,6 +234,62 @@ export function EducationBook({ onPreviewChange }: EducationBookProps) {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="hidden max-[520px]:grid max-[520px]:gap-4">
+          <div className="mx-auto w-full max-w-[360px] drop-shadow-[0_22px_28px_rgba(0,0,0,0.28)]">
+            <Image
+              src="/images/education-book-clean.png"
+              alt="Open book illustration"
+              width={1614}
+              height={975}
+              loading="eager"
+              className="block h-auto w-full object-contain"
+            />
+          </div>
+
+          <article className="rounded-3xl border border-[#0c5c5b]/25 bg-[#fff8dc]/94 p-5 text-center text-[#15365b] shadow-[0_18px_36px_rgba(0,0,0,0.26)]">
+            <Image
+              src="/images/uit-logo.png"
+              alt="VNUHCM University of Information Technology logo"
+              width={1185}
+              height={935}
+              className="mx-auto mb-2 h-auto w-20 object-contain drop-shadow-[0_6px_12px_rgba(0,81,214,0.24)]"
+            />
+            <p className="mx-0 mb-2 mt-0 text-[.68rem] font-black uppercase leading-snug text-[#0c5c5b]">
+              VNUHCM - University of Information Technology
+            </p>
+            <h3 className={cx(displayFont, "m-0 text-2xl leading-none text-[#112852]")}>
+              Information Technology
+            </h3>
+            <p className="mx-0 mb-4 mt-2 text-xs font-extrabold text-[#486073]">
+              (Sep 2023 - Jun 2027 expected)
+            </p>
+
+            <ul className="m-0 grid list-none gap-2.5 p-0 text-left">
+              {educationFacts.map((fact, index) => (
+                <li
+                  className="relative pl-4 text-[.82rem] font-bold leading-[1.35] text-[#344d5d] before:absolute before:left-0 before:top-[.7em] before:size-1.5 before:rounded-full before:bg-[#0c9fa2] before:content-['']"
+                  key={index}
+                >
+                  {fact}
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <div className="rounded-3xl border border-[#0c5c5b]/25 bg-[#fff8dc]/94 p-4 shadow-[0_18px_36px_rgba(0,0,0,0.26)]">
+            <h4 className={cx(displayFont, "m-0 mb-4 text-center text-2xl text-[#112852]")}>
+              Awards
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              {educationAwards.map((award, index) => (
+                <div className={index === 0 ? "col-span-2" : ""} key={award.title}>
+                  {renderAward(award)}
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -96,7 +96,7 @@ export function SkillsExplorer() {
     <div className="relative mx-auto min-h-[560px] w-[min(1320px,100%)] overflow-hidden max-[860px]:min-h-[620px] max-[520px]:min-h-[500px]">
       {!isExpanded ? (
         <button
-          className="group absolute left-1/2 top-1/2 z-[3] grid w-[min(1160px,108vw)] -translate-x-1/2 -translate-y-1/2 place-items-center border-0 bg-transparent p-0 transition duration-500 hover:scale-[1.025] max-[520px]:w-[min(700px,120vw)]"
+          className="group absolute left-1/2 top-1/2 z-[3] grid w-[min(1160px,108vw)] -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0 transition duration-500 hover:scale-[1.025] max-[520px]:w-[min(700px,120vw)]"
           type="button"
           onClick={() => setIsExpanded(true)}
           aria-label="Open skill orbit"
@@ -152,7 +152,7 @@ export function SkillsExplorer() {
               <g key={`${group.name}-logos`}>
                 {group.items.map((item) => (
                   <g
-                    className="group/logo cursor-pointer"
+                    className="skill-logo group/logo cursor-pointer"
                     filter="url(#skill-soft-shadow)"
                     key={item.name}
                   >
