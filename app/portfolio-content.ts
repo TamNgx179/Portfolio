@@ -48,22 +48,27 @@ export const experience = [
     index: "01",
     period: "Jul 2026 — Oct 2026",
     company: "AlphaSphere",
-    role: "Full-stack Developer Intern",
+    role: "Fullstack Developer Intern",
     logo: "/images/alphasphere-logo-original.png",
     logoAlt: "AlphaSphere logo",
     url: "https://alphasphere.io/",
     lead: "Building dependable SaaS workflows from developer tooling to billing and content delivery.",
     points: [
-      "Built an AI-assisted coding harness with structured project context and reusable engineering workflows.",
-      "Developed asynchronous Instagram and X feed synchronization using Redis and BullMQ workers.",
-      "Implemented Stripe subscriptions, webhooks and idempotency protection; designed secure media access with DigitalOcean Spaces."
+      "Built an AI-assisted coding harness that provides structured project context, reusable tools, and development workflows to support consistent software implementation and engineering tasks.",
+      "Developed an asynchronous social-feed synchronization pipeline for Instagram and X using Redis and BullMQ workers, processing updates in dedicated background jobs and delivering new content to digital signage screens without blocking the main application.",
+      "Built Stripe subscription billing flows for plan changes, proration, trials, and usage-based charging, with webhook-driven event handling and idempotency-key protection to prevent duplicate operations and improve payment-state consistency.",
+      "Designed a secure media-storage workflow using DigitalOcean Spaces, introducing a quarantine stage for newly uploaded files and presigned URLs for controlled asset access."
     ],
     stack: [
+      { label: "TypeScript", image: "" },
       { label: "NestJS", image: "" },
       { label: "React", image: "/images/skills/react.png" },
+      { label: "Vite", image: "" },
       { label: "MongoDB", image: "/images/skills/mongodb.png" },
       { label: "Redis", image: "/images/skills/redis.png" },
-      { label: "Docker", image: "/images/skills/docker.png" }
+      { label: "BullMQ", image: "" },
+      { label: "Docker", image: "/images/skills/docker.png" },
+      { label: "DigitalOcean Spaces", image: "" }
     ]
   },
   {
@@ -76,9 +81,9 @@ export const experience = [
     url: "https://honeynet.vn/",
     lead: "Creating reliable backend services for a public social welfare product.",
     points: [
-      "Developed registration, OTP verification, login, account recovery and password reset APIs.",
-      "Designed PostgreSQL models for news, events, donations, activity search and comment approval.",
-      "Built validated real-time notifications for application status and administrative workflows."
+      "Developed backend APIs for authentication and account management, covering registration, OTP verification, login, password setup, account recovery, and password reset workflows.",
+      "Designed PostgreSQL data models and backend services for news/events, donation activities, activity search, and comment approval workflows.",
+      "Built real-time notification APIs with robust request validation for application submission workflows, improving consistency and reliability of backend request handling."
     ],
     stack: [
       { label: "TypeScript", image: "/images/skills/typescript.png" },

@@ -68,7 +68,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="job-stack" aria-label={`${job.company} technology stack`}>
-                      {job.stack.map((tool) => <span key={tool.label} title={tool.label}><BrandLogo name={tool.label} size={25} /><span className="sr-only">{tool.label}</span></span>)}
+                      {job.stack.map((tool) => <span key={tool.label} title={tool.label}><BrandLogo name={tool.label} size={25} /><span>{tool.label}</span></span>)}
                     </div>
                     <ul className="job-points">{job.points.map((point) => <li key={point}>{point}</li>)}</ul>
                   </div>
@@ -84,9 +84,10 @@ export default function Home() {
             <div className="projects-grid">
               {projects.map((project) => (
                 <article className="project-card" key={project.title} data-reveal>
-                  <div className="project-image">
+                  <a className="project-image project-image-link" href={project.image} target="_blank" rel="noreferrer" aria-label={`View full screenshot of ${project.title}`}>
                     <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 760px) 92vw, 44vw" className={project.index === "03" ? "project-image-phone" : ""} />
-                  </div>
+                    <span className="project-image-label">View full image <ArrowUpRight aria-hidden="true" size={12} style={{ display: "inline" }} /></span>
+                  </a>
                   <div className="project-details">
                     <p className="project-type">{project.category} · {project.year}</p>
                     <h3>{project.title}</h3>
