@@ -13,3 +13,6 @@ build
 
 # Environment
 .env*
+
+# Harness runtime state
+.harness/runtime/

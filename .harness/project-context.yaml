@@ -1,0 +1,70 @@
+schemaVersion: "1.0"
+
+project:
+  name: Nguyen Minh Tam Portfolio
+  slug: portfolio
+  mode: existing
+  root: .
+  description: >-
+    Personal software engineering portfolio presenting experience, selected projects,
+    skills and contact links.
+  purpose: >-
+    Help recruiters and collaborators quickly understand Nguyen Minh Tam's engineering
+    strengths, review evidence of shipped work, and reach out.
+  repositoryType: single-package
+  developmentModel: Local feature delivery with review before any commit or remote mutation.
+
+repository:
+  provider: github
+  projectPath: TamNgx179/Portfolio
+  remoteName: origin
+  remoteUrl: https://github.com/TamNgx179/Portfolio.git
+  defaultBranch: main
+
+technology:
+  frontend: Next.js App Router with React, TypeScript, Tailwind CSS, and Lucide icons
+  packageManager: npm
+
+structure:
+  frontend: app
+  sourceRoots:
+    - app
+  projectInstructions: AGENTS.md
+
+commands:
+  install: npm install
+  development: npm run dev
+  build: npm run build
+  verify: npm run lint
+  verifyFrontend:
+    - npm run lint
+    - npm run build
+
+environment:
+  templateFiles: []
+  authoritativeSource: No runtime environment configuration is currently required.
+  valuesStoredInContext: false
+
+ci:
+  provider: none
+  configPath: none
+  requiredJobs: []
+
+deployment:
+  reference: README.md
+  provider: vercel
+  status: Existing GitHub-linked production deployment
+
+harness:
+  version: 0.1.0
+  pluginIdentity: ai-harness@local
+  projectContextPath: .harness/project-context.yaml
+  workspaceRoot: ../..
+  pathUnderWorkspaceRoot: projects/portfolio
+  knownLimitations:
+    - No automated test suite or browser end-to-end suite is currently declared.
+    - Vercel deployment is configured externally through the linked GitHub repository.
+
+git:
+  targetBranch: main
+  forcePushPolicy: Never

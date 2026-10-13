@@ -1,0 +1,38 @@
+{
+  "task": "portfolio-redesign",
+  "recommended": "calm-editorial",
+  "options": [
+    {
+      "id": "calm-editorial",
+      "name": "Calm Editorial",
+      "direction": "Warm, light editorial portfolio with restrained technical details.",
+      "palette": {
+        "background": "#F5F3EE",
+        "surface": "#FFFFFF",
+        "ink": "#17211D",
+        "muted": "#58635D",
+        "primary": "#1F6F5B",
+        "accent": "#C86B4A"
+      },
+      "layout": "Asymmetric editorial hero, proof strip, large project case studies, compact experience timeline, grouped capabilities, education and contact.",
+      "motion": "Soft section reveals, small image parallax and hover lift; optional lazy hero-only Three.js living contour with a static fallback.",
+      "tradeoffs": "Best readability and recruiter scan speed; the memorable effect comes from typography, composition and one restrained 3D moment rather than a dark immersive theme."
+    },
+    {
+      "id": "graphite-studio",
+      "name": "Graphite Studio",
+      "direction": "Dark neutral engineering studio with muted teal and amber accents.",
+      "palette": {
+        "background": "#111412",
+        "surface": "#1A1F1C",
+        "ink": "#F2F3EE",
+        "muted": "#A9B0AA",
+        "primary": "#69A995",
+        "accent": "#D99A62"
+      },
+      "layout": "Modular grid hero, compact engineering metrics, visual case-study cards, timeline, capability matrix and contact panel.",
+      "motion": "Sharper panel transitions and a hero-only Three.js node field rendered on demand with reduced-motion fallback.",
+      "tradeoffs": "More cinematic and technical, but closer to the dark mood of the current site and slightly less aligned with the request to make the page feel lighter and calmer."
+    }
+  ]
+}

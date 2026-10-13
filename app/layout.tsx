@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
-import { DynaPuff, Nunito } from "next/font/google";
+import { Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const displayFont = DynaPuff({
+const displayFont = Newsreader({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"]
+  style: ["normal", "italic"]
 });
 
-const bodyFont = Nunito({
+const bodyFont = Manrope({
   subsets: ["latin", "vietnamese"],
   variable: "--font-body",
-  weight: ["400", "500", "600", "700", "800", "900"]
+  weight: ["400", "500", "600", "700", "800"]
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal portfolio website"
+  title: "Nguyễn Minh Tâm — Software Engineer",
+  description:
+    "Software engineer building reliable backend, full-stack, and AI-powered products in Ho Chi Minh City.",
+  openGraph: {
+    title: "Nguyễn Minh Tâm — Software Engineer",
+    description: "Backend, full-stack, and AI-powered product engineering.",
+    type: "website"
+  }
 };
 
 export default function RootLayout({
@@ -25,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         {children}
       </body>
