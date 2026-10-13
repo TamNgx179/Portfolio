@@ -63,7 +63,7 @@ export default function Home() {
                     <div className="experience-card-head">
                       <div className={`company-logo${job.company === "HONEYNET Joint Stock Company" ? " company-logo--white-matte" : ""}`}><Image src={job.logo} alt={job.logoAlt} width={64} height={64} /></div>
                       <div>
-                        <h3>{job.url ? <a href={job.url} target="_blank" rel="noreferrer">{job.company}<ArrowUpRight aria-hidden="true" size={22} /></a> : job.company}</h3>
+                        <h3><a href={job.url} target="_blank" rel="noreferrer">{job.company}<ArrowUpRight aria-hidden="true" size={22} /></a></h3>
                         <p>{job.role}</p>
                       </div>
                     </div>

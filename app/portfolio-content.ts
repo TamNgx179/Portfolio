@@ -6,10 +6,10 @@ export const projects = [
     year: "2025–2026",
     image: "/images/projects/deepreader-reader.png",
     imageAlt: "DeepReader PDF reading workspace",
-    description: "A reading workspace that turns PDFs and EPUBs into grounded answers, summaries and flashcards.",
-    detail: "Built RAG workflows with Gemini embeddings, Qdrant and Haystack, plus asynchronous document ingestion and Redis-backed rate limiting.",
+    description: "An AI-powered PDF/EPUB reading platform with citation-grounded Q&A, summaries and 1–50 flashcards, supporting uploads up to 25 MB.",
+    detail: "Full-stack developer in a six-member team. Built RAG workflows with Gemini embeddings, Qdrant and Haystack, asynchronous document ingestion and Redis-backed rate limiting; optimized Next.js performance and SEO with 90+ Lighthouse scores.",
     proof: "90+ Lighthouse score · 25 MB uploads",
-    stack: ["Java", "Spring Boot", "Python", "FastAPI", "TypeScript", "Next.js", "React", "Tailwind CSS", "PostgreSQL", "MongoDB", "Redis", "Qdrant", "Apache Kafka", "Apache Camel", "Haystack", "Gemini", "Groq", "Docker", "Prometheus", "Grafana"],
+    stack: ["Java", "Spring Boot", "Next.js", "Tailwind CSS", "PostgreSQL", "MongoDB", "Redis", "Qdrant", "Docker"],
     url: "https://github.com/23520904/deepreader",
     action: "View Project"
   },
@@ -23,7 +23,7 @@ export const projects = [
     description: "A vehicle marketplace with a guided checkout and Sepolia escrow transaction states.",
     detail: "Designed responsive discovery and checkout flows, and connected transaction progress across React, Express, MongoDB and a verified smart contract.",
     proof: "End-to-end checkout · Verified contract",
-    stack: ["JavaScript", "React", "Vite", "Node.js", "Express", "MongoDB", "Mongoose", "Solidity", "Ethers.js", "Hardhat", "Ethereum / Sepolia"],
+    stack: ["JavaScript", "React", "Vite", "Node.js", "Express", "MongoDB"],
     url: "https://github.com/TamNgx179/blockchain-vehicle-marketplace",
     action: "View Project"
   },
@@ -73,7 +73,7 @@ export const experience = [
     role: "Backend Developer Intern",
     logo: "/images/honeynet-logo.png",
     logoAlt: "HONEYNET logo",
-    url: "",
+    url: "https://honeynet.vn/",
     lead: "Creating reliable backend services for a public social welfare product.",
     points: [
       "Developed registration, OTP verification, login, account recovery and password reset APIs.",
